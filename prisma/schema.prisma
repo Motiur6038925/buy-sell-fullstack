@@ -1,0 +1,104 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id        Int    @id @default(autoincrement())
+  firstName String @db.VarChar(50)
+  lastName  String @db.VarChar(50)
+  email     String @unique @db.VarChar(50)
+  password  String @db.VarChar(50)
+  roleType  String @default("User") @db.VarChar(100)
+
+  createAt DateTime @default(now()) @db.Timestamp(0)
+  updateAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
+
+model Product {
+  id           Int     @id @default(autoincrement())
+  Condition    String  @db.VarChar(50)
+  Authenticity String  @db.VarChar(50)
+  Brand        String  @db.VarChar(50)
+  Model        String  @db.VarChar(50)
+  Edition      String? @db.VarChar(50)
+  Features     String? @db.VarChar(50)
+  Description  String  @db.VarChar(300)
+  Price        String  @db.VarChar(50)
+  photos       String  @db.VarChar(50)
+  Name         String  @db.VarChar(50)
+  Email        String  @db.VarChar(150)
+  Phone        String  @db.VarChar(150)
+  Status       String  @db.VarChar(50)
+}
+
+model catagory {
+  id    Int    @id @default(autoincrement())
+  name  String @db.VarChar(50)
+  image String @db.VarChar(300)
+
+  createAt DateTime  @default(now()) @db.Timestamp(0)
+  updateAt DateTime  @default(now()) @updatedAt @db.Timestamp(0)
+  service  service[]
+
+  subcatagory subcatagory[]
+}
+
+model subcatagory {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(50)
+
+  catagoryid Int
+  catagory   catagory @relation(fields: [catagoryid], references: [id], onDelete: Cascade)
+  createAt   DateTime @default(now()) @db.Timestamp(0)
+  updateAt   DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
+
+model location {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(50)
+
+  createAt    DateTime      @default(now()) @db.Timestamp(0)
+  updateAt    DateTime      @default(now()) @updatedAt @db.Timestamp(0)
+  service     service[]
+  sublocation sublocation[]
+}
+
+model sublocation {
+  id         Int      @id @default(autoincrement())
+  name       String   @db.VarChar(50)
+  locationid Int
+  location   location @relation(fields: [locationid], references: [id], onDelete: Cascade)
+}
+
+model service {
+  id           Int     @id @default(autoincrement())
+  Condition    String  @db.VarChar(50)
+  Authenticity String  @db.VarChar(50)
+  Brand        String  @db.VarChar(50)
+  Model        String  @db.VarChar(50)
+  Edition      String? @db.VarChar(50)
+  Features     String? @db.VarChar(500)
+  Description  String  @db.VarChar(300)
+  Price        String  @db.VarChar(50)
+  image1       String  @db.VarChar(300)
+  image2       String  @db.VarChar(300)
+  Name         String  @db.VarChar(50)
+  Email        String  @db.VarChar(150)
+  Phone        String  @db.VarChar(150)
+  status       String  @db.VarChar(50)
+
+  catagoryid Int
+  locationid Int
+  catagory   catagory @relation(fields: [catagoryid], references: [id], onDelete: Cascade)
+  location   location @relation(fields: [locationid], references: [id], onDelete: Cascade)
+  createAt   DateTime @default(now()) @db.Timestamp(0)
+  updateAt   DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
