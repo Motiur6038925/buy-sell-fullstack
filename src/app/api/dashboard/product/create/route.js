@@ -12,7 +12,6 @@ export async function POST(req, res) {
     let result = await prisma.service.create({
       data: reqBody,
     });
-    console.log(result);
 
     return NextResponse.json({ status: "Success", data: result });
   } catch (e) {

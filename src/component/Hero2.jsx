@@ -4,8 +4,9 @@ import { read_all_aproved__Request__API } from "@/utility/api";
 import Link from "next/link";
 
 import { useEffect, useRef, useState } from "react";
+import ModalImplement from "./ModalImplement";
 
-const Hero2 = ({ Data }) => {
+const Hero2 = ({ Data, locations, Sublocations, Slug }) => {
   const [service, setService] = useState([]);
 
   useEffect(() => {
@@ -20,12 +21,27 @@ const Hero2 = ({ Data }) => {
         <h2 className="pb-2 text-xl font-bold text-left text-gray-800 md:text-3xl">
           All Products
         </h2>
+        <section className=" flex items-center  gap-8">
+          <Link href={`/CatagorySelectForUser`}>
+            <button className=" bg-green-500   ">Change Category</button>
+          </Link>
+          {/* <Link href={`/LocationSelectForUser`}>
+            <button className=" bg-green-500   ">Change Location</button>
+          </Link> */}
+          <ModalImplement
+            locations={locations}
+            Sublocations={Sublocations}
+            Slug={Slug}
+          />
+        </section>
+
         <div className="w-20 mb-6 border-b border-red-700 dark:border-gray-400"></div>
+
         <div className="grid gap-4 grid-cols-4 ">
           {service?.map((item, index) => (
             <Link
               className="block max-w-md mx-auto group relative"
-              href={`blog-details/${item.id}`}
+              href={`/blog-details/${item.id}`}
             >
               <div
                 key={index}

@@ -1,18 +1,8 @@
-"use client";
 import Link from "next/link";
 import React from "react";
-const SubLocation = ({
-  Data,
-  CategoryParams,
-  CategoryName,
 
-  Subcategory,
-
-  SubcategoryParams,
-  location,
-  locationparams,
-}) => {
-  const sublocation = Data;
+const LocationSelectForUser = ({ Data }) => {
+  let locations = Data;
 
   return (
     <div>
@@ -33,10 +23,10 @@ const SubLocation = ({
           >
             <div className=" w-[50%]">
               <ul className="">
-                {sublocation?.map((item, index) => {
+                {locations?.map((item, index) => {
                   return (
                     <Link
-                      href={`/dashboard/service/?category=${CategoryName}&categoryparams=${CategoryParams}&Subcategory=${Subcategory}&SubcategoryParams=${SubcategoryParams}&location=${location}&locationparams=${locationparams}&sublocation=${item.name}&sublocationparams=${item.id}`}
+                      href={`/SubLocationForUser/?location=${item.name}&locationparams=${item.id}`}
                     >
                       <li
                         key={index}
@@ -72,4 +62,4 @@ const SubLocation = ({
   );
 };
 
-export default SubLocation;
+export default LocationSelectForUser;

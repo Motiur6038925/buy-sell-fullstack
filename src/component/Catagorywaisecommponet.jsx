@@ -18,7 +18,7 @@ const Catagorywaisecommponet = () => {
       <div className="  grid grid-cols-4 gap-8 py-[50px] px-[50px]">
         {catagory?.map((item, index) => {
           return (
-            <Link href={`/ads/Bangladesh/${item.id}`}>
+            <Link href={`/ads/Bangladesh/?slug=${item.id}`}>
               <div
                 className=" flex items-center gap-6  justify-center
             

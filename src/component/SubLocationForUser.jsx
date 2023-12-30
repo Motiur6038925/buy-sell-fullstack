@@ -1,17 +1,7 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-const SubLocation = ({
-  Data,
-  CategoryParams,
-  CategoryName,
-
-  Subcategory,
-
-  SubcategoryParams,
-  location,
-  locationparams,
-}) => {
+const SubLocationForUser = ({ Data }) => {
   const sublocation = Data;
 
   return (
@@ -35,9 +25,9 @@ const SubLocation = ({
               <ul className="">
                 {sublocation?.map((item, index) => {
                   return (
-                    <Link
-                      href={`/dashboard/service/?category=${CategoryName}&categoryparams=${CategoryParams}&Subcategory=${Subcategory}&SubcategoryParams=${SubcategoryParams}&location=${location}&locationparams=${locationparams}&sublocation=${item.name}&sublocationparams=${item.id}`}
-                    >
+                    // `/ads/Bangladesh/?slug=${item?.id}`
+                    // `/ads/sublocation=${item.name}/?sublocationparams=${item.id}`
+                    <Link href={`/ads/${item.id}/?slug=${item?.id}`}>
                       <li
                         key={index}
                         className=" text-[#0074ba] flex items-center justify-between border-2 p-[8px]"
@@ -72,4 +62,4 @@ const SubLocation = ({
   );
 };
 
-export default SubLocation;
+export default SubLocationForUser;

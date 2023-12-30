@@ -1,43 +1,30 @@
 "use client";
+
 import Link from "next/link";
 import React from "react";
-const SubLocation = ({
-  Data,
+
+const SubCategorySelectForUser = ({
+  Subcategories,
   CategoryParams,
   CategoryName,
-
-  Subcategory,
-
-  SubcategoryParams,
-  location,
-  locationparams,
 }) => {
-  const sublocation = Data;
-
   return (
     <div>
       <div>
         <div className="  p-[50px] bg-white ">
           <span className=" flex items-center justify-between">
-            <h1 className=" text-black mb-4">Select a Location</h1>{" "}
-            <img
-              className=" w-[24px] h-[24px]"
-              src="https://cdn-icons-png.flaticon.com/128/1828/1828665.png?ga=GA1.1.1939879715.1701420004&semt=ais"
-              alt=""
-            />
+            <h1 className=" text-black mb-4">Select a SubCategory</h1>
           </span>
 
           <section
             className="  flex items-center
-             "
+           "
           >
             <div className=" w-[50%]">
               <ul className="">
-                {sublocation?.map((item, index) => {
+                {Subcategories?.map((item, index) => {
                   return (
-                    <Link
-                      href={`/dashboard/service/?category=${CategoryName}&categoryparams=${CategoryParams}&Subcategory=${Subcategory}&SubcategoryParams=${SubcategoryParams}&location=${location}&locationparams=${locationparams}&sublocation=${item.name}&sublocationparams=${item.id}`}
-                    >
+                    <Link href={`/ads/Bangladesh/?slug=${item?.id}`}>
                       <li
                         key={index}
                         className=" text-[#0074ba] flex items-center justify-between border-2 p-[8px]"
@@ -72,4 +59,4 @@ const SubLocation = ({
   );
 };
 
-export default SubLocation;
+export default SubCategorySelectForUser;

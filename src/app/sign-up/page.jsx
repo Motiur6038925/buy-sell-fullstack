@@ -96,6 +96,7 @@ const page = () => {
                   </div>
                 </div>
               </div>
+
               <div className="flex mb-4 px-4 bg-gray-50 rounded">
                 <input
                   className="w-full py-4 text-xs text-black placeholder-gray-400 font-semibold leading-none bg-gray-50 outline-none"

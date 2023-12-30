@@ -1,7 +1,13 @@
 import Link from "next/link";
 import React from "react";
 
-const Location = ({ Data, CategoryParams, CategoryName }) => {
+const Location = ({
+  Data,
+  CategoryParams,
+  CategoryName,
+  Subcategory,
+  SubcategoryParams,
+}) => {
   let locations = Data;
 
   return (
@@ -10,11 +16,6 @@ const Location = ({ Data, CategoryParams, CategoryName }) => {
         <div className="  p-[50px] bg-white ">
           <span className=" flex items-center justify-between">
             <h1 className=" text-black mb-4">Select a Location</h1>{" "}
-            <img
-              className=" w-[24px] h-[24px]"
-              src="https://cdn-icons-png.flaticon.com/128/1828/1828665.png?ga=GA1.1.1939879715.1701420004&semt=ais"
-              alt=""
-            />
           </span>
 
           <section
@@ -26,7 +27,7 @@ const Location = ({ Data, CategoryParams, CategoryName }) => {
                 {locations?.map((item, index) => {
                   return (
                     <Link
-                      href={`/SubLocation/?category=${CategoryName}&categoryparams=${CategoryParams}&location=${item.name}&locationparams=${item.id}`}
+                      href={`/SubLocation/?category=${CategoryName}&categoryparams=${CategoryParams}&Subcategory=${Subcategory}&SubcategoryParams=${SubcategoryParams}&location=${item.name}&locationparams=${item.id}`}
                     >
                       <li
                         key={index}
@@ -54,7 +55,6 @@ const Location = ({ Data, CategoryParams, CategoryName }) => {
                 })}
               </ul>
             </div>
-            <div></div>
           </section>
         </div>
       </div>

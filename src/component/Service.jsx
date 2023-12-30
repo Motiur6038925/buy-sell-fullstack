@@ -17,7 +17,13 @@ import { image } from "@cloudinary/url-gen/qualifiers/source";
 // import { ServiceUpdateDialog } from "@/component/ServiceUpdateDialog";
 // import { DeleteAlertServicePost } from "@/utility/DeleteAlert";
 
-export default function Service({ CategoryParams, LocationParams }) {
+export default function Service({
+  CategoryParams,
+  LocationParams,
+  SubLocationParams,
+  Subcategory,
+  SubCategoryParams,
+}) {
   const [ParamsOfCategory, setParamsOfCategory] = useState([]);
   const [ParamsOfLocation, setParamsOfLocation] = useState([]);
 
@@ -119,7 +125,12 @@ export default function Service({ CategoryParams, LocationParams }) {
     let Email = EmailRef.value;
     let Phone = PhoneRef.value;
     let catagoryid = parseInt(catagoryidref);
+
     let locationid = parseInt(locationidref);
+
+    let subcatagoryId = parseInt(SubCategoryParams);
+    let sublocationId = parseInt(SubLocationParams);
+
     create_service__Request__API({
       Condition,
       Authenticity,
@@ -136,6 +147,9 @@ export default function Service({ CategoryParams, LocationParams }) {
       Phone,
       catagoryid,
       locationid,
+
+      subcatagoryId,
+      sublocationId,
     }).then((res) => {
       if (res) {
         SuccessToast("Service add successful!");
